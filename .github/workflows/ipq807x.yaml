@@ -31,7 +31,7 @@ jobs:
                 echo "CONFIG_PACKAGE_kmod-qca-nss-drv-pppoe=y\n" >> .config
                 echo "CONFIG_PACKAGE_kmod-qca-nss-drv-vlan-mgr=y\n" >> .config
                 echo "CONFIG_PACKAGE_kmod-qca-nss-ecm=y\n" >> .config
-                echo "CONFIG_PACKAGE_kmod-qca-ssdk-nohnat=y\n" >> .config
+                echo "CONFIG_PACKAGE_kmod-qca-ssdk=y\n" >> .config
                 echo "CONFIG_PACKAGE_kmod-wireguard=y\n" >> .config
                 echo "CONFIG_PACKAGE_qca-ssdk-shell=y\n" >> .config
                 echo "CONFIG_PACKAGE_wpad-basic-wolfssl=m\n" >> .config
