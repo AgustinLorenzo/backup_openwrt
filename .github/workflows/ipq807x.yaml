@@ -1,5 +1,6 @@
 name: Build IPQ807x NSS
-on: [push]
+
+on: workflow_dispatch
 
 jobs:
     build:
@@ -15,30 +16,9 @@ jobs:
                 ./scripts/feeds update -a
                 ./scripts/feeds install -a
 
-            - name: Generate config for IPQ807x NSS Generic
+            - name: Import full config for IPQ807x NSS Generic
               run: |
-                echo "CONFIG_TARGET_ipq807x=y" > .config
-                echo "CONFIG_TARGET_ipq807x_generic=y\n" >> .config
-                echo "CONFIG_TARGET_MULTI_PROFILE=y\n" >> .config
-                echo "CONFIG_TARGET_ALL_PROFILES=y\n" >> .config
-                echo "CONFIG_TARGET_PER_DEVICE_ROOTFS=y\n" >> .config
-                echo "CONFIG_TARGET_ROOTFS_INITRAMFS=y\n" >> .config
-                echo "CONFIG_TARGET_INITRAMFS_COMPRESSION_ZSTD=y\n" >> .config
-                echo "CONFIG_PACKAGE_luci=y\n" >> .config
-                echo "CONFIG_PACKAGE_nss-firmware-ipq8074=y\n" >> .config
-                echo "CONFIG_PACKAGE_kmod-qca-nss-crypto=y\n" >> .config
-                echo "CONFIG_PACKAGE_kmod-qca-nss-dp=y\n" >> .config
-                echo "CONFIG_PACKAGE_kmod-qca-nss-drv=y\n" >> .config
-                echo "CONFIG_PACKAGE_kmod-qca-nss-drv-pppoe=y\n" >> .config
-                echo "CONFIG_PACKAGE_kmod-qca-nss-drv-vlan-mgr=y\n" >> .config
-                echo "CONFIG_PACKAGE_kmod-qca-nss-drv-bridge-mgr=y\n" >> .config
-                echo "CONFIG_PACKAGE_kmod-qca-nss-ecm=y\n" >> .config
-                echo "CONFIG_PACKAGE_kmod-qca-ssdk=y\n" >> .config
-                echo "CONFIG_PACKAGE_kmod-wireguard=y\n" >> .config
-                echo "CONFIG_PACKAGE_qca-ssdk-shell=y\n" >> .config
-                echo "CONFIG_PACKAGE_wpad-basic-wolfssl=m\n" >> .config
-                echo "CONFIG_PACKAGE_wpad-wolfssl=y\n" >> .config
-                make defconfig
+                mv .full_config .config
 
             - name: Enable WiFi on default config
               run: |
